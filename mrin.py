@@ -421,12 +421,10 @@ async def run_attack(chat_id, target, port, time):
 # Send a message when the attack finishes (original format preserved)
 async def send_attack_finished_message(chat_id):
     message = (
-        "*✅ Your attack has been completed successfully!*\n\n"
-        "*If you face any issues with this bot, kindly report it to*\n\n"
-        "[➖ CLICK HERE ➖](https://t.me/MrinMoYxCB)"
+        "*𝗬𝗼𝘂𝗿 𝗮𝘁𝘁𝗮𝗰𝗸 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝗳𝗶𝗻𝗶𝘀𝗵𝗲𝗱. 𝗬𝗼𝘂 𝗰𝗮𝗻 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲 𝗽𝗹𝗮𝘆𝗶𝗻𝗴 𝘆𝗼𝘂𝗿 𝗺𝗮𝘁𝗰𝗵* 👀\n\n*𝗜𝗙 𝗬𝗼𝘂 𝗙𝗮𝗰𝗲 𝗮𝗻𝘆 𝗶𝘀𝘀𝘂𝗲 𝗶𝗻 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁 𝗸𝗶𝗻𝗱𝗹𝘆 𝗿𝗲𝗽𝗼𝗿𝘁 𝗶𝘁 𝘁𝗼*\n\n             [➖ 𝗖𝗟𝗜𝗖𝗞 𝗛𝗘𝗥𝗘 ➖](https://t.me/MrinMoYxCB)"
     )
     await bot.send_message(chat_id, message, parse_mode='Markdown', disable_web_page_preview=True)
-
+ 
 
 
 @bot.message_handler(func=lambda message: message.text == "👤 My Info")
