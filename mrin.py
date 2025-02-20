@@ -130,7 +130,7 @@ def save_resellers(resellers):
 resellers = load_resellers()
 
 
-async def run_attack(message.chat.id, ip, port, time):
+async def run_attack(chat_id, ip, port, time):
     try:
         # Execute the attack command using a subprocess
         process = await asyncio.create_subprocess_shell(
