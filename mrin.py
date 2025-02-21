@@ -381,14 +381,14 @@ def process_attack_details(message):
             if port in blocked_ports:
                 bot.send_message(
                     message.chat.id,
-                    f"‼ *Port {port} is blocked.* Please use a different port.",
+                    f"‼ *‼️ 𝙋𝙤𝙧𝙩 {port} 𝙞𝙨 𝙗𝙡𝙤𝙘𝙠𝙚𝙙 ‼️ , 𝙋𝙡𝙚𝙖𝙨𝙚 𝙪𝙨𝙚 𝙖 𝙙𝙞𝙛𝙛𝙚𝙧𝙚𝙣𝙩 𝙥𝙤𝙧𝙩 ✅*",
                     parse_mode='Markdown'
                 )
                 return
 
             # Check if the time exceeds the limit
             if time > 240:  # Limit time to 240 seconds
-                response = "❗️*Error: Use less than 240 seconds.*❗️"
+                response = "❗️*𝗘𝗿𝗿𝗼𝗿 : 𝘂𝘀𝗲 𝗹𝗲𝘀𝘀 𝘁𝗵𝗲𝗻 𝟮𝟰𝟬  𝘀𝗲𝗰𝗼𝗻𝗱𝘀*❗️"
                 bot.reply_to(message, response, parse_mode='Markdown')
                 return
 
