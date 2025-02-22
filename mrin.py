@@ -176,8 +176,8 @@ def send_welcome(message):
     username = message.from_user.username or "N/A"
 
     # No user addition logic here; we only allow users who redeem keys
-    welcome_message = (f"𝗪𝗲𝗹𝗰𝗼𝗺𝗲, {username} 𝘁𝗼 𝗠𝗥𝗶𝗡𝘅𝗗𝗶𝗟𝗗𝗢𝗦™ 𝗕𝗼𝗧 ! \n\n"
-                       f"𝗣𝗹𝗲𝗮𝘀𝗲 𝗚𝗲𝘁 𝗮 🔑 𝗞𝗲𝗬 𝗳𝗿𝗼𝗺  @MrinMoYxCB | @M_o_Y_007 𝘁𝗼 𝗮𝗰𝗰𝗲𝘀𝘀 𝗯𝗼𝘁 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝗮𝗹𝗶𝘁𝗶𝗲𝘀..\n")
+    welcome_message = (f"*𝗪𝗲𝗹𝗰𝗼𝗺𝗲, {username} 𝘁𝗼 𝗡𝗘𝗘𝗥𝗔𝗝 𝘅 𝗗𝗜𝗟𝗗𝗢𝗦™ 𝗕𝗼𝗧* ! \n\n"
+                       f"*𝗣𝗹𝗲𝗮𝘀𝗲 𝗚𝗲𝘁 𝗮 🔑 𝗞𝗲𝗬 𝗳𝗿𝗼𝗺  @H3X_neeraj 𝘁𝗼 𝗮𝗰𝗰𝗲𝘀𝘀 𝗯𝗼𝘁 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝗮𝗹𝗶𝘁𝗶𝗲𝘀..*\n", parse_mode='Markdown')
 
     # Create buttons for "My Account" and "Attack"
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
@@ -194,7 +194,7 @@ def genkey_command(message):
 
     # Check if the user is an admin
     if not is_admin(user_id):
-        bot.send_message(chat_id, "*You are not authorized to generate keys.\nContact Owner for keys: @MrinMoYxCB | @M_o_Y_007*", parse_mode='Markdown')
+        bot.send_message(chat_id, "*You are not authorized to generate keys.\nContact Owner for keys: @H3X_neeraj*", parse_mode='Markdown')
         return
 
     cmd_parts = message.text.split()
@@ -214,7 +214,7 @@ def genkey_command(message):
     # Generate a single key without expiration time
     key = generate_key()
     keys[key] = duration  # Store duration instead of expiration time
-    bot.send_message(chat_id, f"🔑 𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲𝗱 𝗸𝗲𝘆 🔑 for {duration} :  `/redeem {key}`\n\nPlease redeem the key to access our BOT", parse_mode='Markdown')
+    bot.send_message(chat_id, f"🔑 *𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲𝗱 𝗸𝗲𝘆 🔑 for {duration}* :  `/redeem {key}`\n\n*Please redeem the key to access our BOT*", parse_mode='Markdown')
 
 
 @bot.message_handler(commands=['redeem'])
@@ -254,10 +254,10 @@ def redeem_command(message):
         redeemed_keys.add(key)
         save_users(users)
 
-        bot.send_message(chat_id, "🗝️ 𝗞𝗲𝘆 𝗿𝗲𝗱𝗲𝗲𝗺𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 ✅")
+        bot.send_message(chat_id, "🗝️ *𝗞𝗲𝘆 𝗿𝗲𝗱𝗲𝗲𝗺𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆* ✅", parse_mode='Markdown')
     else:
         if key in redeemed_keys:
-            bot.send_message(chat_id, "🗝️ 𝗧𝗵𝗶𝘀 𝗸𝗲𝘆 𝗵𝗮𝘀 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝗯𝗲𝗲𝗻 𝗿𝗲𝗱𝗲𝗲𝗺𝗲𝗱 ⚠️ \n\nContact Owner :- @MrinMoYxCB | @M_o_Y_007")
+            bot.send_message(chat_id, "🗝️ *𝗧𝗵𝗶𝘀 𝗸𝗲𝘆 𝗵𝗮𝘀 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝗯𝗲𝗲𝗻 𝗿𝗲𝗱𝗲𝗲𝗺𝗲𝗱 ⚠️ \n\nContact Owner :- @H3X_neeraj7*", parse_mode='Markdown')
         else:
             bot.send_message(chat_id, "Invalid key!")
 
@@ -267,7 +267,7 @@ def remove_user_command(message):
     chat_id = message.chat.id
 
     if not is_admin(user_id):
-        bot.send_message(chat_id, "*You are not authorized to remove users.\nContact Owner :- @MrinMoYxCB | @M_o_Y_007*", parse_mode='Markdown')
+        bot.send_message(chat_id, "*You are not authorized to remove users.\nContact Owner :- @H3X_neeraj*", parse_mode='Markdown')
         return
 
     cmd_parts = message.text.split()
@@ -309,13 +309,13 @@ def attack_button_handler(message):
     found_user = next((user for user in users if user['user_id'] == user_id), None)
 
     if not found_user:
-        bot.send_message(chat_id, "*You are not registered. Please redeem A key from Owner:- @MrinMoYxCB | @M_o_Y_007*", parse_mode='Markdown')
+        bot.send_message(chat_id, "*You are not registered. Please redeem A key from Owner:- @H3X_neeraj*", parse_mode='Markdown')
         return
 
     # Check if the user's key is still valid
     valid_until = datetime.fromisoformat(found_user['valid_until'])
     if datetime.now() > valid_until:
-        bot.send_message(chat_id, "*Your key has expired. Please redeem A new key from Owner:- @MrinMoYxCB | @M_o_Y_007.*", parse_mode='Markdown')
+        bot.send_message(chat_id, "*Your key has expired. Please redeem A new key from Owner:- @H3X_neeraj.*", parse_mode='Markdown')
         return
 
     try:
@@ -348,7 +348,7 @@ def my_account(message):
                             f"🔖 𝗣𝗹𝗮𝗻 : {found_user.get('plan', 'N/A')}\n"
                             f"⏲️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗧𝗶𝗺𝗲 : {current_time}")
     else:
-        account_info = "𝗣𝗹𝗲𝗮𝘀𝗲 𝗽𝘂𝗿𝗰𝗵𝗮𝘀𝗲 𝗮 𝗸𝗲𝘆 𝗙𝗿𝗼𝗺 𝗢𝘄𝗻𝗲𝗿 :- @MrinMoYxCB | @M_o_Y_007."
+        account_info = "𝗣𝗹𝗲𝗮𝘀𝗲 𝗽𝘂𝗿𝗰𝗵𝗮𝘀𝗲 𝗮 𝗸𝗲𝘆 𝗙𝗿𝗼𝗺 𝗢𝘄𝗻𝗲𝗿 :- @H3X_neeraj."
 
     bot.send_message(message.chat.id, account_info)
 
